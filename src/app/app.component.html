@@ -1,0 +1,357 @@
+<div class="container-fluid p-5">
+  <div class="row">
+    <div class="col-2 customframe">
+
+      <div class="row p-2">
+        <div class="col-12 p-3 customframe">
+          <div class="row">
+            <div>Price Range</div>
+            <div class="col-12">
+
+              <mat-slider [min]="filterParamsInit.minPrice" [max]="filterParamsInit.maxPrice" [discrete]="true">
+                <input [(ngModel)]="filterParams.minPrice" matSliderStartThumb />
+                <input [(ngModel)]="filterParams.maxPrice" matSliderEndThumb />
+              </mat-slider>
+
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <input [(ngModel)]="filterParams.minPrice" type="number" placeholder="minPrice" class="form-control">
+            </div>
+            <div class="col-6">
+              <input [(ngModel)]="filterParams.maxPrice" type="number" placeholder="maxPrice" class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row p-2">
+        <div class="col-12 p-3 customframe">
+          <div class="row">
+            <div>Area Range</div>
+
+            <div class="col-12">
+
+              <mat-slider [min]="filterParamsInit.MinFieldM2" [max]="filterParamsInit.MaxFieldM2" [discrete]="true">
+                <input [(ngModel)]="filterParams.MinFieldM2" matSliderStartThumb />
+                <input [(ngModel)]="filterParams.MaxFieldM2" matSliderEndThumb />
+              </mat-slider>
+
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <input type="text" [(ngModel)]="filterParams.MinFieldM2" placeholder="minArea" class="form-control">
+            </div>
+            <div class="col-6">
+              <input type="text" [(ngModel)]="filterParams.MaxFieldM2" placeholder="maxArea" class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row p-2">
+        <div class="col-12 p-3 customframe">
+          <div class="row">
+            <div>Age Range</div>
+
+            <div class="col-12">
+
+              <mat-slider [min]="filterParamsInit.minBuildingAge" [max]="filterParamsInit.maxBuildingAge"
+                [discrete]="true">
+                <input [(ngModel)]="filterParams.minBuildingAge" matSliderStartThumb />
+                <input [(ngModel)]="filterParams.maxBuildingAge" matSliderEndThumb />
+              </mat-slider>
+
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <input type="text" [(ngModel)]="filterParams.minBuildingAge" placeholder="minAge" class="form-control">
+            </div>
+            <div class="col-6">
+              <input type="text" [(ngModel)]="filterParams.maxBuildingAge" placeholder="maxAge" class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row p-2">
+        <div class="col-12 p-3 customframe">
+          <div class="row">
+
+            <div class="col-12">
+
+              <div>
+                <label for="exampleInputEmail1" class="form-label">Rent Type</label>
+                <select [(ngModel)]="filterParams.rentType" class="form-select form-select-sm"
+                  aria-label="Small select example">
+                  <option selected [value]="null">All</option>
+                  <option *ngFor="let item of filterParamsInit.rentTypeList" value="{{item.key}}">{{item.value}}
+                  </option>
+                </select>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row p-2">
+        <div class="col-12 p-3 customframe">
+          <div class="row">
+
+            <div class="col-12">
+
+              <div>
+                <label for="exampleInputEmail1" class="form-label">Estate Type</label>
+                <select [(ngModel)]="filterParams.estateType" class="form-select form-select-sm"
+                  aria-label="Small select example">
+                  <option selected [value]="null">All</option>
+                  <option *ngFor="let item of filterParamsInit.estateTypeList" value="{{item.key}}">{{item.value}}
+                  </option>
+                </select>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row p-2">
+        <div class="col-12 p-3 customframe">
+          <div class="row">
+
+            <div class="col-12">
+
+              <div>
+                <label for="exampleInputEmail1" class="form-label">Country</label>
+                <select (change)="SelectDistrict()" [(ngModel)]="filterParams.countryId"
+                  class="form-select form-select-sm" aria-label="Small select example">
+                  <option selected [value]="null">All</option>
+                  <option *ngFor="let item of filterParamsInit.countryList" value="{{item.id}}">{{item.countryName}}
+                  </option>
+                </select>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row p-2">
+        <div class="col-12 p-3 customframe">
+          <div class="row">
+
+            <div class="col-12">
+
+              <div>
+                <label for="exampleInputEmail1" class="form-label">District</label>
+                <select [(ngModel)]="filterParams.districtId" class="form-select form-select-sm"
+                  aria-label="Small select example">
+                  <option selected [value]="null">All</option>
+                  <option *ngFor="let item of districtList" value="{{item.id}}">{{item.districtName}}</option>
+                </select>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="row p-2">
+        <button (click)="filterAll()" type="button" class="btn btn-warning">Filter</button>
+      </div>
+
+
+
+    </div>
+
+
+
+    <div class="col-10 customframe">
+      <div class="row p-2">
+
+
+        <div class="col-4">
+          <div class="card mb-3">
+            <div class="row g-0" style="background-color: rgb(236, 236, 236);">
+              <div class="col-md-4 customframe" style="background-color: antiquewhite;">
+                <img src="favicon.ico" class="img-fluid rounded-start" alt="..." />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h2 class="card-title">Add Estate</h2>
+                  <!-- <div class="row">
+                    <div class="col-9">
+                      <h2 class="card-title">asdad</h2>
+                    </div>
+                    <div class="col-3">
+                      <button type="button" class="btn btn-danger"
+                        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">sil</button>
+                    </div>
+                  </div> -->
+                  <div class="row" *ngIf="addVisibility">
+                    <div class="col-6">
+                      <div>Price :</div>
+                      <div>Building age :</div>
+                      <div>State : </div>
+                      <div>Area : m2</div>
+                      <div>Estate Type : </div>
+                      <div>Address : </div>
+                    </div>
+                    <div class="col-6">
+                      <button (click)="AddEstateLock()" type="button" style="width: 100%; height: 100%;"
+                        class="btn btn-warning">
+                        + Add Estate
+                      </button>
+                    </div>
+                  </div>
+
+
+                  <div class="row" *ngIf="!addVisibility">
+                    <div class="col-12" [formGroup]="frm1">
+
+                      <div class="row">
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-text" id="inputGroup-sizing-sm">Price</span>
+                          <input formControlName="Price" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                        </div>
+
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-text" id="inputGroup-sizing-sm">Building Age</span>
+                          <input formControlName="Age" type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm">
+                        </div>
+
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-text" id="inputGroup-sizing-sm">Area</span>
+                          <input formControlName="Area" type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm">
+                        </div>
+
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-text" id="inputGroup-sizing-sm">Description</span>
+                          <input formControlName="Description" type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm">
+                        </div>
+
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-text" id="inputGroup-sizing-sm">RentType</span>
+
+                          <select formControlName="RentType" class="form-select" aria-describedby="inputGroup-sizing-sm">
+                            <option *ngFor="let i of filterParamsInit.rentTypeList" [value]="i.key">{{i.value}}</option>
+                          </select>
+
+                        </div>
+
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-text" id="inputGroup-sizing-sm">Estate Type</span>
+
+                          <select formControlName="EstateType" class="form-select" aria-describedby="inputGroup-sizing-sm">
+                            <option *ngFor="let i of filterParamsInit.estateTypeList" [value]="i.key">{{i.value}}
+                            </option>
+                          </select>
+
+                        </div>
+
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-text" id="inputGroup-sizing-sm">Country</span>
+                          <select formControlName="Country" (change)="GetDistrictListOfAddComponenet($event.target)" class="form-select"
+                            aria-describedby="inputGroup-sizing-sm">
+                            <option value="null">select...</option>
+                            <option *ngFor="let i of filterParamsInit.countryList" [value]="i.id">{{i.countryName}}
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-text" id="inputGroup-sizing-sm">District</span>
+                          <select formControlName="District" class="form-select" aria-describedby="inputGroup-sizing-sm">
+                            <option *ngFor="let i of districtListOfAddComponenet" [value]="i.id">{{i.districtName}}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="row pt-3">
+                        <div class="col-6">
+                          <button (click)="AddEstate()" type="button" class="btn btn-primary w-100"
+                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                            + Add
+                          </button>
+                        </div>
+                        <div class="col-6">
+                          <button (click)="AddEstateUnLock()" type="button" class="btn btn-danger w-100"
+                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+
+
+
+                    </div>
+
+
+                  </div>
+
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div class="col-4" *ngFor="let item of listOfEstate">
+          <div class="card mb-3">
+            <div class="row g-0">
+              <div class="col-md-4 customframe">
+                <img src="favicon.ico" class="img-fluid rounded-start" alt="..." />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <!-- <h2 class="card-title">{{item.headerDsc}}</h2>  -->
+                  <div class="row">
+                    <div class="col-9">
+                      <h2 class="card-title">{{item.headerDsc}}</h2>
+                    </div>
+                    <div class="col-3">
+                      <button (click)="RemoveEstate(item.id)" type="button" class="btn btn-danger"
+                        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">sil</button>
+                    </div>
+                  </div>
+                  <div>Price : {{item.price}}</div>
+                  <div>Building age :{{item.buildingAge}}</div>
+                  <div>State : {{item.rentType}}</div>
+                  <div>Area : {{item.fieldM2}} m2</div>
+                  <div>Estate Type : {{item.estateType}}</div>
+                  <div>Address : {{item.district.country.countryName}} | {{item.district.districtName}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<button (click)="GetAllCountries()">gett</button>

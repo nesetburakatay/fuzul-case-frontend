@@ -1,0 +1,16 @@
+.customframe {
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+mat-slider {
+  width: 95%;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
